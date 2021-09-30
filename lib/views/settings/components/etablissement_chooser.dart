@@ -160,6 +160,10 @@ class _EtablissementSelectorState extends State<EtablissementSelector> {
           Etablissement etablissement = state.etablissements[index];
           bool onSelect = eta?.nom == etablissement.nom;
           return ListTile(
+            leading: Image.network(
+              "https://api.flopedt.org" + etablissement.logo,
+              width: 50,
+            ),
             selected: onSelect,
             onTap: () {
               setState(() {

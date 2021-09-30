@@ -1,7 +1,6 @@
 import 'package:flop_edt_app/models/state/app_state.dart';
 import 'package:flop_edt_app/models/state/settings.dart';
 import 'package:flop_edt_app/state_manager/state_widget.dart';
-import 'package:flop_edt_app/theme/changeThemeButtonWidget.dart';
 import 'package:flop_edt_app/theme/themes.dart';
 import 'package:flop_edt_app/views/divers/about_screen.dart';
 import 'package:flop_edt_app/views/divers/contact_screen.dart';
@@ -22,7 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   AppState state;
 
   Settings settings;
-  bool mode;
+  bool mode; //Pour le darkMode
 
   void handleSelectEtablissement() {
     var theme = Theme.of(context);
@@ -30,14 +29,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(25.0), topRight: Radius.circular(25.0)),
+              topLeft: Radius.circular(50.0), topRight: Radius.circular(50.0)),
         ),
         context: context,
         builder: (context) {
           return Container(
               decoration: BoxDecoration(
                 color: theme.scaffoldBackgroundColor,
-                borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50.0),
+                    topRight: Radius.circular(50.0)),
               ),
               child: SingleChildScrollView(
                 padding: EdgeInsets.all(5),
@@ -69,15 +70,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
       showModalBottomSheet(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.0),
-                topRight: Radius.circular(25.0)),
+                topLeft: Radius.circular(50.0),
+                topRight: Radius.circular(50.0)),
           ),
           context: context,
           builder: (context) {
             return Container(
                 decoration: BoxDecoration(
                   color: theme.scaffoldBackgroundColor,
-                  borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(50.0),
+                      topRight: Radius.circular(50.0)),
                 ),
                 child: SingleChildScrollView(
                   padding: EdgeInsets.all(5),
@@ -99,15 +102,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
       showModalBottomSheet(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(25.0),
-                topRight: Radius.circular(25.0)),
+                topLeft: Radius.circular(50.0),
+                topRight: Radius.circular(50.0)),
           ),
           context: context,
           builder: (context) {
             return Container(
               decoration: BoxDecoration(
                 color: theme.scaffoldBackgroundColor,
-                borderRadius: BorderRadius.all(Radius.circular(25.0)),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(50.0),
+                    topRight: Radius.circular(50.0)),
               ),
               padding: EdgeInsets.all(10),
               child: Column(

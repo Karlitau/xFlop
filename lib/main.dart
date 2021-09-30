@@ -1,4 +1,3 @@
-import 'package:flop_edt_app/models/state/app_state.dart';
 import 'package:flop_edt_app/router/router.dart' as Custom;
 import 'package:flop_edt_app/state_manager/state_widget.dart';
 import 'package:flop_edt_app/theme/themes.dart';
