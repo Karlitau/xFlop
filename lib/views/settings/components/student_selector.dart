@@ -27,12 +27,15 @@ class _StudentSettingsSelectorState extends State<StudentSettingsSelector> {
   @override
   void initState() {
     super.initState();
-    department = widget.settings?.department ?? 'INFO';
-    promotion = widget.settings?.promo ?? 'INFO1';
+    department = widget.settings?.department;
+    promotion = widget.settings?.promo;
     groupe = widget.settings?.groupe;
   }
 
   List<String> findGroupsByPromo(String department, promo) {
+    if (state.promos[department] == null) {
+      department = state.departments[1];
+    }
     var res = state.promos[department]
         .where((element) => element.promo == promo)
         .toList();
@@ -61,6 +64,9 @@ class _StudentSettingsSelectorState extends State<StudentSettingsSelector> {
   @override
   Widget build(BuildContext context) {
     state = StateWidget.of(context).state;
+    if (state.promos[department] == null) {
+      department = state.departments[1];
+    }
     var groups = findGroupsByPromo(department, promotion);
     return Column(
       children: <Widget>[
@@ -75,7 +81,9 @@ class _StudentSettingsSelectorState extends State<StudentSettingsSelector> {
                   promotion = null;
                   sendSettings();
                 }),
-                value: department,
+                value: state.promos[0] == null
+                    ? state.departments[1]
+                    : state.departments[0],
               ),
               PromotionSelector(
                 onSelect: (value) => setState(() {
@@ -83,7 +91,9 @@ class _StudentSettingsSelectorState extends State<StudentSettingsSelector> {
                   sendSettings();
                 }),
                 value: promotion,
-                currentDep: department,
+                currentDep: state.promos[department] == null
+                    ? state.departments[1]
+                    : department,
               ),
               // groups.length == 0
               //     ? Container()

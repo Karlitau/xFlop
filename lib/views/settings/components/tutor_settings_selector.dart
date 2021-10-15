@@ -34,6 +34,11 @@ class _TutorSettingsSelectorState extends State<TutorSettingsSelector> {
   @override
   Widget build(BuildContext context) {
     state = StateWidget.of(context).state;
+    if (state.profs[filter] == null) {
+      filter = state.profs[state.departments[0]] == null
+          ? state.departments[1]
+          : state.departments[0];
+    }
     var theme = Theme.of(context);
     isDark = theme.iconTheme.color == Colors.white;
     return Column(

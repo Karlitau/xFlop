@@ -6,11 +6,9 @@ import 'package:flop_edt_app/models/resources/promotion.dart';
 import 'package:flop_edt_app/models/resources/tutor.dart';
 import 'package:flop_edt_app/models/state/app_state.dart';
 import 'package:flop_edt_app/models/state/settings.dart';
-import 'package:flop_edt_app/theme/themes.dart';
 import 'package:flop_edt_app/utils/date_utils.dart' as du;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 ///Widget permettant de gérer le state global de l'application
 ///Lorsque son state sera modifié, il répercutera les changements au sein de chacun de ses enfants.
@@ -183,7 +181,7 @@ class _StateWidgetState extends State<StateWidget> {
     var mapProfs = <String, List<Tutor>>{};
     for (var dep in departments) {
       //On exclue RESA des départements
-      if (dep != 'RESA') {
+      if (dep != 'RESA' && dep != 'default') {
         var promos = await api.getPromotions(department: dep);
         var profs = await api.getTutorsOfDepartment(dep: dep);
         map[dep] = promos;

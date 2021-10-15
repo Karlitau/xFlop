@@ -159,51 +159,58 @@ class _EtablissementSelectorState extends State<EtablissementSelector> {
         itemBuilder: (context, index) {
           Etablissement etablissement = state.etablissements[index];
           bool onSelect = eta?.nom == etablissement.nom;
-          return Padding(padding: EdgeInsets.all(10),
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 500),
-              curve: Curves.easeInOut,
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              decoration: BoxDecoration(
-                  color: onSelect ? Color(0xFFFF6C00) : etablissement.xflop == null
-                    ? isDark ? Colors.white24 : Colors.black12
-                    : etablissement.xflop == false
-                        ? isDark ? Colors.white24 : Colors.black12
-                        :  theme.toggleableActiveColor,
-                  borderRadius: BorderRadius.circular(50),
-                  border: onSelect
-                      ? null
-                      : Border.all(
-                          width: 1,
-                          color: isDark ? Colors.white24 : Colors.black12)),
-              child: Center(
-                  child: ListTile(
-                enabled: etablissement.xflop == null
-                    ? false
-                    : etablissement.xflop == false
+          return Padding(
+              padding: EdgeInsets.all(10),
+              child: AnimatedContainer(
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeInOut,
+                  margin: EdgeInsets.symmetric(horizontal: 5),
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  decoration: BoxDecoration(
+                      color: onSelect
+                          ? Color(0xFFFF6C00)
+                          : etablissement.xflop == null
+                              ? isDark
+                                  ? Colors.white24
+                                  : Colors.black12
+                              : etablissement.xflop == false
+                                  ? isDark
+                                      ? Colors.white24
+                                      : Colors.black12
+                                  : theme.toggleableActiveColor,
+                      borderRadius: BorderRadius.circular(50),
+                      border: onSelect
+                          ? null
+                          : Border.all(
+                              width: 1,
+                              color: isDark ? Colors.white24 : Colors.black12)),
+                  child: Center(
+                      child: ListTile(
+                    enabled: etablissement.xflop == null
                         ? false
-                        : true,
-                selected: onSelect,
-                onTap: () {
-                  setState(() {
-                    eta = etablissement;
-                    widget.onSelect(Settings(
-                        etablissement: etablissement,
-                        department: 'INFO',
-                        promo: 'INFO1',
-                        groupe: null));
-                  });
-                },
-                title: Text(
-                  '${etablissement.nom}',
-                  style: etablissement.xflop == null
-                    ? theme.textTheme.headline3
-                    : etablissement.xflop == false
-                        ? theme.textTheme.headline3
-                        : theme.textTheme.button,
-                ),
-              ))));
+                        : etablissement.xflop == false
+                            ? false
+                            : true,
+                    selected: onSelect,
+                    onTap: () {
+                      setState(() {
+                        eta = etablissement;
+                        widget.onSelect(Settings(
+                            etablissement: etablissement,
+                            department: 'INFO',
+                            promo: 'INFO1',
+                            groupe: null));
+                      });
+                    },
+                    title: Text(
+                      '${etablissement.nom}',
+                      style: etablissement.xflop == null
+                          ? theme.textTheme.headline3
+                          : etablissement.xflop == false
+                              ? theme.textTheme.headline3
+                              : theme.textTheme.button,
+                    ),
+                  ))));
         },
       ),
     );

@@ -91,7 +91,7 @@ class Cours {
         textColor: ColorUtils.fromHex(
             json['course']['module']['display']['color_txt']),
         startTimeFromMidnight: json['start_time'],
-        duration: 90,
+        duration: TypeCours.getDuration(typesCours, json['course']['type']),
         indexInWeek: ["m", "tu", "w", "th", "f"].indexOf(json['day']),
         dateEtHeureDebut: Day.getCompleteWeek(
                 year: year,
@@ -236,7 +236,7 @@ class Cours {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(
-                                     const IconData(58330,
+                                    const IconData(58330,
                                         fontFamily: 'MaterialIcons'),
                                     color: this.textColor,
                                   ),
@@ -285,7 +285,15 @@ class Cours {
                         ),
                         child: isProf
                             ? _containerProf(context)
-                            : _containerStudent(context),
+                            : this.enseignant.initiales.compareTo("---") == 0
+                                ? Text(
+                                    ' Pas encore d\'enseignant ',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: this.textColor,
+                                    ),
+                                  )
+                                : _containerStudent(context),
                       )
                     ],
                   ),
@@ -300,7 +308,7 @@ class Cours {
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Icon(
-              const IconData(983342, fontFamily: 'MaterialIcons'),
+              IconData(983342, fontFamily: 'MaterialIcons'),
               color: this.textColor,
             ),
             Text(
@@ -313,7 +321,7 @@ class Cours {
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Icon(
-              const IconData(63430, fontFamily: 'MaterialIcons'),
+              IconData(63430, fontFamily: 'MaterialIcons'),
               color: this.textColor,
             ),
             Text(
@@ -330,7 +338,7 @@ class Cours {
   Widget _containerStudent(BuildContext context) => Column(children: [
         Row(mainAxisAlignment: MainAxisAlignment.center, children: [
           Icon(
-            const IconData(62753, fontFamily: 'MaterialIcons'),
+            IconData(62753, fontFamily: 'MaterialIcons'),
             color: this.textColor,
           ),
           Text(
@@ -379,7 +387,7 @@ class Cours {
             send(recipient, context);
           },
           icon: Icon(
-            const IconData(63081, fontFamily: 'MaterialIcons'),
+            IconData(63081, fontFamily: 'MaterialIcons'),
             color: Colors.black,
           ),
           label: Text(
