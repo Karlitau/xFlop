@@ -73,9 +73,7 @@ class _RouterState extends State<Router> {
         currentIndex: _selected,
         backgroundColor: theme.scaffoldBackgroundColor,
         selectedItemColor: theme.primaryColorLight,
-        unselectedItemColor: !(theme.iconTheme.color == Colors.white)
-            ? Color(0xFF383838)
-            : theme.primaryColor,
+        unselectedItemColor: theme.primaryIconTheme.color,
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.event), label: 'EDT'),
           BottomNavigationBarItem(

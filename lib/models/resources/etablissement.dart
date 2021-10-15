@@ -5,9 +5,10 @@ import 'package:http/http.dart';
 class Etablissement {
   String nom;
   String url;
+  String logo;
   bool xflop;
 
-  Etablissement({this.nom, this.url, this.xflop});
+  Etablissement({this.nom, this.url, this.logo, this.xflop});
 
   factory Etablissement.fromJSON(Map<String, dynamic> json) => Etablissement(
         nom: json['name'] == null
@@ -16,14 +17,24 @@ class Etablissement {
         url: json['flop_url'] == null
             ? (json['url'] == null ? null : json['url'])
             : json['name'],
-        xflop: json['xflop'] == null ? false : json['xflop'] == false ? false : true, 
+        xflop: json['xflop'] == null
+            ? false
+            : json['xflop'] == false
+                ? false
+                : true,
+        logo: json['logo'] == null ? 'null' : json['logo'],
       );
+
+  // json['logo'].compareTo('null') != 0
+  //          ? json['logo']
+  //          :
 
   ///Crée une [Map] à partir de l'objet.
   Map<String, dynamic> get toMap => {
         'nom': this.nom,
         'url': this.url,
         'xflop': this.xflop,
+        'logo': this.logo,
       };
 
   ///Retourne une chaîne JSON de l'objet.
@@ -45,6 +56,7 @@ class Etablissement {
         nom: eta['name'],
         url: eta['flop_url'],
         xflop: eta['xflop'],
+        logo: eta['logo']['url'],
       ));
     }
     return res;

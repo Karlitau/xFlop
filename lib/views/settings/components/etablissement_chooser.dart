@@ -186,6 +186,10 @@ class _EtablissementSelectorState extends State<EtablissementSelector> {
                               color: isDark ? Colors.white24 : Colors.black12)),
                   child: Center(
                       child: ListTile(
+                    leading: Image.network(
+                      "https://api.flopedt.org" + etablissement.logo,
+                      width: 50,
+                    ),
                     enabled: etablissement.xflop == null
                         ? false
                         : etablissement.xflop == false
